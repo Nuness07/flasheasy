@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Flasheasy
 
-## Getting Started
+Flasheasy is an intuitive SRS (Spaced Repetition System) flashcard web app designed to make learning English easier, smarter, and more human — powered by AI.
 
-First, run the development server:
+Originally built to help my girlfriend study English, this project focuses on simplicity, clarity, and actually helping learners progress without friction.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Why Flasheasy?
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Most flashcard and SRS tools today fall into one of two categories:
+- Powerful but complex and overwhelming  
+- Simple but limited, paid, or with poor UX  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Flasheasy aims to sit in the sweet spot:
+- Clean and intuitive interface  
+- Science-based spaced repetition  
+- AI features that *actually help*, not distract  
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🧩 Core Concepts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Spaced Repetition System (SRS)**  
+  Review cards at the right time to improve long-term memory.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Flashcards made for language learning**  
+  Vocabulary, phrases, sentences, and contextual usage.
 
-## Deploy on Vercel
+- **AI-assisted learning**  
+  Smart features to help explain, generate examples, and adapt study content to the learner.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤖 Planned AI Features
+
+- AI-generated example sentences based on the learner’s level  
+- Simple explanations for words and phrases  
+- Smart hints when a card is repeatedly failed  
+- Automatic suggestion of new cards based on mistakes  
+
+(Always optional. AI should support learning, not replace thinking.)
+
+---
+
+## 🛠️ Tech Stack (WIP)
+
+- Frontend: React / Next.js  
+- Styling: Tailwind CSS  
+- State & data: TBD  
+- AI: OpenAI API  
+- Auth & persistence: TBD  
+
+This project is under active development and the stack may evolve.
+
+---
+
+## 📌 Project Status
+
+🚧 **Work in progress**  
+This project is being built in public. Expect breaking changes, refactors, and experimentation.
+
+---
+
+## ❤️ Philosophy
+
+Learning a language is already hard.  
+The tool shouldn’t make it harder.
+
+Flasheasy Belle is about:
+- Reducing friction  
+- Encouraging consistency  
+- Respecting the learner’s time and mental energy  
+
+---
+
+## ✨ Final Note
+
+This project started as something personal.  
+If it helps more people along the way, even better.
