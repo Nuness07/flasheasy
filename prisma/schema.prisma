@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Flashcard {
+  id         String   @id @default(uuid())
+  front      String
+  back       String
+  tags       String[]
+  difficulty Int?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
