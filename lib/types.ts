@@ -1,4 +1,4 @@
-import { Flashcard } from "../lib/generated/prisma/client";
+import { Flashcard } from "./generated/prisma/client";
 
 export type { Flashcard };
 
