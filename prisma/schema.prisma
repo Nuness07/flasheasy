@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  output   = "../lib/generated/prisma"
 }
 
 datasource db {
@@ -13,6 +13,13 @@ model Flashcard {
   back       String
   tags       String[]
   difficulty Int?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Group {
+  id         String   @id @default(uuid())
+  name       String
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
