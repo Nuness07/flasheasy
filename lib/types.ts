@@ -1,18 +1,17 @@
-import { Flashcard } from '@prisma/client'
+import { Flashcard } from "../lib/generated/prisma/client";
 
-export type { Flashcard }
+export type { Flashcard };
 
 export type FlashcardCreateInput = {
-  front: string
-  back: string
-  tags?: string[]
-  difficulty?: number
-}
+  front: string;
+  back: string;
+  tags?: string[];
+  difficulty?: number;
+};
 
 export type FlashcardUpdateInput = {
-  front?: string
-  back?: string
-  tags?: string[]
-  difficulty?: number
-}
-
+  front?: string;
+  back?: string;
+  tags?: string[];
+  difficulty?: number;
+};

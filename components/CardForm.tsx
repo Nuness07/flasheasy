@@ -1,64 +1,67 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Flashcard, FlashcardCreateInput } from '@/lib/types'
-import { Button } from './ui/button'
-import { Input } from './ui/input'
-import { useRouter } from 'next/navigation'
+import { useState } from "react";
+import { Flashcard, FlashcardCreateInput } from "@/lib/types";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { useRouter } from "next/navigation";
 
 interface CardFormProps {
-  card?: Flashcard
-  onSuccess?: () => void
-  onCancel?: () => void
+  card?: Flashcard;
+  onSuccess?: () => void;
+  onCancel?: () => void;
 }
 
 export function CardForm({ card, onSuccess, onCancel }: CardFormProps) {
-  const router = useRouter()
-  const [loading, setLoading] = useState(false)
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState<FlashcardCreateInput>({
-    front: card?.front || '',
-    back: card?.back || '',
+    front: card?.front || "",
+    back: card?.back || "",
     tags: card?.tags || [],
     difficulty: card?.difficulty || undefined,
-  })
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
+    e.preventDefault();
+    setLoading(true);
 
     try {
-      const url = card ? `/api/cards/${card.id}` : '/api/cards'
-      const method = card ? 'PUT' : 'POST'
+      const url = card ? `/api/cards/${card.id}` : "/api/cards";
+      const method = card ? "PUT" : "POST";
 
       const response = await fetch(url, {
         method,
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
-      })
+      });
 
       if (response.ok) {
-        router.refresh()
-        onSuccess?.()
+        router.refresh();
+        onSuccess?.();
         if (!card) {
-          setFormData({ front: '', back: '', tags: [], difficulty: undefined })
+          setFormData({ front: "", back: "", tags: [], difficulty: undefined });
         }
       } else {
-        const error = await response.json()
-        console.error('Error saving card:', error)
+        const error = await response.json();
+        console.error("Error saving card:", error);
       }
     } catch (error) {
-      console.error('Error saving card:', error)
+      console.error("Error saving card:", error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleTagsChange = (value: string) => {
-    const tags = value.split(',').map((tag) => tag.trim()).filter(Boolean)
-    setFormData({ ...formData, tags })
-  }
+    const tags = value
+      .split(",")
+      .map((tag) => tag.trim())
+      .filter(Boolean);
+    setFormData({ ...formData, tags });
+  };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -69,9 +72,7 @@ export function CardForm({ card, onSuccess, onCancel }: CardFormProps) {
         <Input
           id="front"
           value={formData.front}
-          onChange={(e) =>
-            setFormData({ ...formData, front: e.target.value })
-          }
+          onChange={(e) => setFormData({ ...formData, front: e.target.value })}
           placeholder="e.g., Hello"
           required
         />
@@ -84,9 +85,7 @@ export function CardForm({ card, onSuccess, onCancel }: CardFormProps) {
         <Input
           id="back"
           value={formData.back}
-          onChange={(e) =>
-            setFormData({ ...formData, back: e.target.value })
-          }
+          onChange={(e) => setFormData({ ...formData, back: e.target.value })}
           placeholder="e.g., Hola"
           required
         />
@@ -98,7 +97,7 @@ export function CardForm({ card, onSuccess, onCancel }: CardFormProps) {
         </label>
         <Input
           id="tags"
-          value={formData.tags?.join(', ') || ''}
+          value={formData.tags?.join(", ") || ""}
           onChange={(e) => handleTagsChange(e.target.value)}
           placeholder="e.g., greetings, basic"
         />
@@ -113,7 +112,7 @@ export function CardForm({ card, onSuccess, onCancel }: CardFormProps) {
           type="number"
           min="1"
           max="5"
-          value={formData.difficulty || ''}
+          value={formData.difficulty || ""}
           onChange={(e) =>
             setFormData({
               ...formData,
@@ -126,7 +125,7 @@ export function CardForm({ card, onSuccess, onCancel }: CardFormProps) {
 
       <div className="flex gap-2">
         <Button type="submit" disabled={loading}>
-          {loading ? 'Saving...' : card ? 'Update Card' : 'Create Card'}
+          {loading ? "Saving..." : card ? "Update Card" : "Create Card"}
         </Button>
         {onCancel && (
           <Button type="button" variant="outline" onClick={onCancel}>
@@ -135,6 +134,5 @@ export function CardForm({ card, onSuccess, onCancel }: CardFormProps) {
         )}
       </div>
     </form>
-  )
+  );
 }
-

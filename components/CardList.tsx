@@ -1,78 +1,78 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { Flashcard } from '@/lib/types'
-import { Button } from './ui/button'
-import { CardForm } from './CardForm'
-import { Edit, Trash2, Plus } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { useState, useEffect } from "react";
+import { Flashcard } from "@/lib/types";
+import { Button } from "./ui/button";
+import { CardForm } from "./CardForm";
+import { Edit, Trash2, Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export function CardList() {
-  const router = useRouter()
-  const [cards, setCards] = useState<Flashcard[]>([])
-  const [loading, setLoading] = useState(true)
-  const [editingCard, setEditingCard] = useState<Flashcard | null>(null)
-  const [showForm, setShowForm] = useState(false)
+  const router = useRouter();
+  const [cards, setCards] = useState<Flashcard[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [editingCard, setEditingCard] = useState<Flashcard | null>(null);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
-    fetchCards()
-  }, [])
+    fetchCards();
+  }, []);
 
   const fetchCards = async () => {
     try {
-      const response = await fetch('/api/cards')
+      const response = await fetch("/api/cards");
       if (response.ok) {
-        const data = await response.json()
-        setCards(data)
+        const data = await response.json();
+        setCards(data);
       }
     } catch (error) {
-      console.error('Error fetching cards:', error)
+      console.error("Error fetching cards:", error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this card?')) {
-      return
+    if (!confirm("Are you sure you want to delete this card?")) {
+      return;
     }
 
     try {
       const response = await fetch(`/api/cards/${id}`, {
-        method: 'DELETE',
-      })
+        method: "DELETE",
+      });
 
       if (response.ok) {
-        router.refresh()
-        fetchCards()
+        router.refresh();
+        fetchCards();
       }
     } catch (error) {
-      console.error('Error deleting card:', error)
+      console.error("Error deleting card:", error);
     }
-  }
+  };
 
   const handleEdit = (card: Flashcard) => {
-    setEditingCard(card)
-    setShowForm(true)
-  }
+    setEditingCard(card);
+    setShowForm(true);
+  };
 
   const handleFormSuccess = () => {
-    setShowForm(false)
-    setEditingCard(null)
-    fetchCards()
-  }
+    setShowForm(false);
+    setEditingCard(null);
+    fetchCards();
+  };
 
   const handleCancel = () => {
-    setShowForm(false)
-    setEditingCard(null)
-  }
+    setShowForm(false);
+    setEditingCard(null);
+  };
 
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <p className="text-muted-foreground">Loading cards...</p>
       </div>
-    )
+    );
   }
 
   return (
@@ -81,19 +81,19 @@ export function CardList() {
         <h2 className="text-2xl font-semibold">My Flashcards</h2>
         <Button
           onClick={() => {
-            setEditingCard(null)
-            setShowForm(!showForm)
+            setEditingCard(null);
+            setShowForm(!showForm);
           }}
         >
           <Plus className="h-4 w-4 mr-2" />
-          {showForm ? 'Cancel' : 'New Card'}
+          {showForm ? "Cancel" : "New Card"}
         </Button>
       </div>
 
       {showForm && (
         <div className="border rounded-lg p-6 bg-card">
           <h3 className="text-lg font-semibold mb-4">
-            {editingCard ? 'Edit Card' : 'Create New Card'}
+            {editingCard ? "Edit Card" : "Create New Card"}
           </h3>
           <CardForm
             card={editingCard || undefined}
@@ -173,6 +173,5 @@ export function CardList() {
         </div>
       )}
     </div>
-  )
+  );
 }
-

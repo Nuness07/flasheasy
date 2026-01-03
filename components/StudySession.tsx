@@ -1,48 +1,48 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { Flashcard as FlashcardType } from '@/lib/types'
-import { Flashcard } from './Flashcard'
-import { Button } from './ui/button'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useState, useEffect } from "react";
+import { Flashcard as FlashcardType } from "@/lib/types";
+import { Flashcard } from "./Flashcard";
+import { Button } from "./ui/button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export function StudySession() {
-  const [cards, setCards] = useState<FlashcardType[]>([])
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [loading, setLoading] = useState(true)
+  const [cards, setCards] = useState<FlashcardType[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchCards()
-  }, [])
+    fetchCards();
+  }, []);
 
   const fetchCards = async () => {
     try {
-      const response = await fetch('/api/cards')
+      const response = await fetch("/api/cards");
       if (response.ok) {
-        const data = await response.json()
-        setCards(data)
+        const data = await response.json();
+        setCards(data);
       }
     } catch (error) {
-      console.error('Error fetching cards:', error)
+      console.error("Error fetching cards:", error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % cards.length)
-  }
+    setCurrentIndex((prev) => (prev + 1) % cards.length);
+  };
 
   const handlePrevious = () => {
-    setCurrentIndex((prev) => (prev - 1 + cards.length) % cards.length)
-  }
+    setCurrentIndex((prev) => (prev - 1 + cards.length) % cards.length);
+  };
 
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <p className="text-muted-foreground">Loading cards...</p>
       </div>
-    )
+    );
   }
 
   if (cards.length === 0) {
@@ -53,10 +53,10 @@ export function StudySession() {
           Create some flashcards to get started!
         </p>
       </div>
-    )
+    );
   }
 
-  const currentCard = cards[currentIndex]
+  const currentCard = cards[currentIndex];
 
   return (
     <div className="flex flex-col items-center gap-6 w-full max-w-2xl mx-auto">
@@ -88,6 +88,5 @@ export function StudySession() {
         </Button>
       </div>
     </div>
-  )
+  );
 }
-

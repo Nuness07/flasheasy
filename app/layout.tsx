@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Flasheasy - SRS Flashcard App for English Learning",
-  description: "An intuitive SRS (Spaced Repetition System) flashcard web app designed to make learning English easier, smarter, and more effective.",
+  description:
+    "An intuitive SRS (Spaced Repetition System) flashcard web app designed to make learning English easier, smarter, and more effective.",
 };
 
 export default function RootLayout({
