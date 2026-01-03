@@ -7,6 +7,15 @@ import { CardForm } from './CardForm'
 import { Edit, Trash2, Plus } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
+/**
+ * Render a client-side UI for viewing and managing flashcards.
+ *
+ * Fetches and displays cards from /api/cards, shows loading and empty states,
+ * and provides controls to create, edit, and delete cards (including an inline
+ * form for creating/editing and confirmation before deletion).
+ *
+ * @returns A JSX element containing the flashcards list and associated controls.
+ */
 export function CardList() {
   const router = useRouter()
   const [cards, setCards] = useState<Flashcard[]>([])
@@ -175,4 +184,3 @@ export function CardList() {
     </div>
   )
 }
-

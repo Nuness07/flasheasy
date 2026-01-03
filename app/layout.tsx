@@ -17,6 +17,12 @@ export const metadata: Metadata = {
   description: "An intuitive SRS (Spaced Repetition System) flashcard web app designed to make learning English easier, smarter, and more effective.",
 };
 
+/**
+ * Provides the application's root HTML structure and applies global font classes.
+ *
+ * @param children - The page content to render inside the document body.
+ * @returns The root JSX element (<html> with <body>) that wraps `children`.
+ */
 export default function RootLayout({
   children,
 }: Readonly<{

@@ -8,6 +8,13 @@ import { BookOpen, List } from 'lucide-react'
 
 type View = 'study' | 'cards'
 
+/**
+ * Top-level page component that renders the Flasheasy header and a main content area which switches views.
+ *
+ * The header provides two navigation buttons that toggle the active view between the study session and the user's card list. The main area renders the StudySession when the study view is active and the CardList when the cards view is active.
+ *
+ * @returns The page's JSX layout: a header with navigation and a main content area that renders either `StudySession` or `CardList` depending on the active view.
+ */
 export default function Home() {
   const [view, setView] = useState<View>('study')
 

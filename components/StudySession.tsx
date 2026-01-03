@@ -6,6 +6,13 @@ import { Flashcard } from './Flashcard'
 import { Button } from './ui/button'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
+/**
+ * Renders an interactive flashcard study session that fetches cards on mount and provides navigation controls.
+ *
+ * Shows a loading message while cards are being fetched, a prompt when no cards exist, or the current flashcard with Previous/Next controls (circular navigation) when cards are available.
+ *
+ * @returns The rendered study session element containing loading, empty, or flashcard views with navigation.
+ */
 export function StudySession() {
   const [cards, setCards] = useState<FlashcardType[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -90,4 +97,3 @@ export function StudySession() {
     </div>
   )
 }
-

@@ -12,6 +12,16 @@ interface CardFormProps {
   onCancel?: () => void
 }
 
+/**
+ * Render a form for creating a new flashcard or editing an existing one.
+ *
+ * On submit, sends a create (POST) or update (PUT) request to the cards API, refreshes the router on success, invokes `onSuccess` if provided, and resets the form when a new card is created. Manages local loading state and parses a comma-separated tags input into an array.
+ *
+ * @param card - Optional existing flashcard to edit; when provided the form is initialized for editing.
+ * @param onSuccess - Optional callback invoked after a successful save.
+ * @param onCancel - Optional callback invoked when the user cancels; when provided a Cancel button is rendered.
+ * @returns The rendered card form element.
+ */
 export function CardForm({ card, onSuccess, onCancel }: CardFormProps) {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
@@ -137,4 +147,3 @@ export function CardForm({ card, onSuccess, onCancel }: CardFormProps) {
     </form>
   )
 }
-

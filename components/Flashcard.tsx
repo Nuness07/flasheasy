@@ -10,6 +10,14 @@ interface FlashcardProps {
   className?: string
 }
 
+/**
+ * Renders an interactive 3D flip flashcard showing front and back text.
+ *
+ * @param card - Flashcard data containing `front` and `back` text to display.
+ * @param onFlip - Optional callback invoked after the card is flipped.
+ * @param className - Optional additional CSS classes for the root container.
+ * @returns The rendered flashcard element.
+ */
 export function Flashcard({ card, onFlip, className }: FlashcardProps) {
   const [isFlipped, setIsFlipped] = useState(false)
 
@@ -61,4 +69,3 @@ export function Flashcard({ card, onFlip, className }: FlashcardProps) {
     </div>
   )
 }
-

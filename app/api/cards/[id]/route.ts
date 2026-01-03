@@ -2,6 +2,12 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { FlashcardUpdateInput } from '@/lib/types'
 
+/**
+ * Retrieve a flashcard by its route `id`.
+ *
+ * @param params - A promise that resolves to an object containing the route `id` string.
+ * @returns A NextResponse with the flashcard object when found; a 404 JSON error `{ error: 'Card not found' }` if no card exists for the given `id`; or a 500 JSON error `{ error: 'Failed to fetch card' }` on server error.
+ */
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -29,6 +35,13 @@ export async function GET(
   }
 }
 
+/**
+ * Update the flashcard identified by the `id` route parameter with any provided fields.
+ *
+ * Updates only the fields included in the request body (`front`, `back`, `tags`, `difficulty`) and returns the updated flashcard record.
+ *
+ * @returns The updated flashcard record
+ */
 export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -58,6 +71,12 @@ export async function PUT(
   }
 }
 
+/**
+ * Delete the flashcard identified by the route `id` parameter.
+ *
+ * @param params - A promise resolving to route parameters; must contain `id` of the flashcard to delete.
+ * @returns `{ success: true }` when the card is deleted; otherwise an error object `{ error: string }` with HTTP status 500.
+ */
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -77,4 +96,3 @@ export async function DELETE(
     )
   }
 }
-
